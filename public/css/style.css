@@ -2,7 +2,6 @@ table {
    
     border: 1px solid black;
     border-collapse: collapse;
-
     width: 50%;
 
   }
@@ -11,13 +10,14 @@ table {
     border: 1px solid black;
     text-align: left;
     padding: 5px;
+    font-family: "Arial";
   }
   h2{
     font-family: "Arial";
   }
   h4{
     
-        font-family: "Arial";
+    font-family: "Arial";
       
   }
   input[type=text] {
@@ -40,12 +40,12 @@ form{
     width:50%;
 }
 .wrapper_1{
-    float:left;
-    font-family: "Arial";
+  float:left;
+  font-family: "Arial";
 }
 .wrapper_2{
-    float:right;
-    font-family: "Arial";
+  float:right;
+  font-family: "Arial";
 }
 button{
     box-sizing: border-box;

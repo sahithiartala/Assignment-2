@@ -47,8 +47,8 @@ function ProductTable(props) {
           <thead>
             <tr>
              <th>Product Name</th>
-              <th>Price</th>
               <th>Category</th>
+              <th>Price</th>
               <th>Image</th>
             </tr>
           </thead>
@@ -81,23 +81,28 @@ class ProductAdd extends React.Component {
     super();
     
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = { Price: '$' }
+    this.handlepriceChange = this.handlepriceChange.bind(this);
     }
     handleSubmit(e) {
       e.preventDefault();
       const form = document.forms.productAdd;
       const product = {
         name: form.Product_Name.value,
-        Price: form.Price.value,
+        Price: form.Price.value.replace('$',''),
          Image:form.Image_URL.value,
          category:form.category.value
       }
       this.props.createProduct(product);
       form.Product_Name.value = "";
-      form.Price.value = "",
+      form.Price.value = "$",
        form.Image_URL.value = "";
        form.category.value = "";
 
     }
+    handlepriceChange(){
+    this.setState({Price: document.forms.productAdd.Price.value})
+  }
   render()
    {
     return (
@@ -107,7 +112,8 @@ class ProductAdd extends React.Component {
             <label> Product Name:</label><br/>
             <input type="text" name="Product_Name" placeholder="Product Name"  /><br/>
             <label>Price Per Unit </label> <br/>
-            <input type="text" name="Price" placeholder="Price"  /><br/>
+            <input type="text" name="Price" placeholder="Price" defaultValue={this.state.Price}
+                                    onChange={this.handlepriceChange} /><br/>
             <button type="submit">Add Product</button>
             </div>
             <div className="wrapper_2">

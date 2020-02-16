@@ -48,7 +48,7 @@ function ProductTable(props) {
     }));
     return React.createElement("table", {
       className: "bordered-table"
-    }, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Product Name"), React.createElement("th", null, "Price"), React.createElement("th", null, "Category"), React.createElement("th", null, "Image"))), React.createElement("tbody", null, productRows));
+    }, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Product Name"), React.createElement("th", null, "Category"), React.createElement("th", null, "Price"), React.createElement("th", null, "Image"))), React.createElement("tbody", null, productRows));
   }
 }
 
@@ -66,6 +66,10 @@ class ProductAdd extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      Price: '$'
+    };
+    this.handlepriceChange = this.handlepriceChange.bind(this);
   }
 
   handleSubmit(e) {
@@ -73,14 +77,20 @@ class ProductAdd extends React.Component {
     const form = document.forms.productAdd;
     const product = {
       name: form.Product_Name.value,
-      Price: form.Price.value,
+      Price: form.Price.value.replace('$', ''),
       Image: form.Image_URL.value,
       category: form.category.value
     };
     this.props.createProduct(product);
     form.Product_Name.value = "";
-    form.Price.value = "", form.Image_URL.value = "";
+    form.Price.value = "$", form.Image_URL.value = "";
     form.category.value = "";
+  }
+
+  handlepriceChange() {
+    this.setState({
+      Price: document.forms.productAdd.Price.value
+    });
   }
 
   render() {
@@ -96,7 +106,9 @@ class ProductAdd extends React.Component {
     }), React.createElement("br", null), React.createElement("label", null, "Price Per Unit "), " ", React.createElement("br", null), React.createElement("input", {
       type: "text",
       name: "Price",
-      placeholder: "Price"
+      placeholder: "Price",
+      defaultValue: this.state.Price,
+      onChange: this.handlepriceChange
     }), React.createElement("br", null), React.createElement("button", {
       type: "submit"
     }, "Add Product")), React.createElement("div", {
