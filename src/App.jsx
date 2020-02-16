@@ -1,3 +1,4 @@
+
 const productInventory=[];
 
 class ProductList extends React.Component {
@@ -140,3 +141,4 @@ class ProductAdd extends React.Component {
 const element = <ProductList />;
 
 ReactDOM.render(element, document.getElementById('contents'));
+
